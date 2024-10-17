@@ -25,7 +25,7 @@ const testProjects = [
 function App() {
   const [projectsState, setProjectsState] = useState({
     selectedProjectId: undefined,
-    projects: [{}],
+    projects: [],
   });
 
   function handleAddProject() {
@@ -34,17 +34,29 @@ function App() {
     });
   }
 
+  function handleSaveNewProject(newProject) {
+    setProjectsState((prevState) => {
+      return {
+        ...prevState,
+        projects: [...prevState.projects, newProject],
+        selectedProjectId: undefined,
+      };
+    });
+  }
+
+  console.log(projectsState.projects);
+
   let content;
   if (projectsState.selectedProjectId === undefined) {
     content = <NoProject onAddProject={handleAddProject} />;
   } else if (projectsState.selectedProjectId === null) {
-    content = <NewProject />;
+    content = <NewProject onSaveNewProject={handleSaveNewProject} />;
   }
 
   return (
     <main className="h-screen my-8 flex gap-8">
       <SideBar
-        projects={testProjects}
+        projects={projectsState.projects}
         onAddProject={handleAddProject}
       />
       {content}
