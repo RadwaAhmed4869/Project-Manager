@@ -23,23 +23,31 @@ const testProjects = [
 ];
 
 function App() {
-  const [projects, setProjects] = useState([]);
-  const [isProjectSelected, setIsProjectSelected] = useState(false);
-  const [isAddingProject, setIsAddingProject] = useState(false);
+  const [projectsState, setProjectsState] = useState({
+    selectedProjectId: undefined,
+    projects: [{}],
+  });
 
   function handleAddProject() {
-    setIsAddingProject(true);
+    setProjectsState((prevState) => {
+      return { ...prevState, selectedProjectId: null };
+    });
+  }
+
+  let content;
+  if (projectsState.selectedProjectId === undefined) {
+    content = <NoProject onAddProject={handleAddProject} />;
+  } else if (projectsState.selectedProjectId === null) {
+    content = <NewProject />;
   }
 
   return (
     <main className="h-screen my-8 flex gap-8">
-      <SideBar projects={projects} onAddProject={handleAddProject} />
-
-      {!isProjectSelected && !isAddingProject && (
-        <NoProject onAddProject={handleAddProject} />
-      )}
-
-      {isAddingProject && <NewProject />}
+      <SideBar
+        projects={testProjects}
+        onAddProject={handleAddProject}
+      />
+      {content}
     </main>
   );
 }
