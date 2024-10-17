@@ -1,6 +1,8 @@
 import { useState } from "react";
+
 import SideBar from "./Components/sideBar";
 import NewProject from "./Components/NewProject";
+import NoProject from "./Components/NoProject";
 
 const testProjects = [
   {
@@ -21,31 +23,23 @@ const testProjects = [
 ];
 
 function App() {
-  const [projects, setProjects] = useState(testProjects);
+  const [projects, setProjects] = useState([]);
+  const [isProjectSelected, setIsProjectSelected] = useState(false);
+  const [isAddingProject, setIsAddingProject] = useState(false);
+
+  function handleAddProject() {
+    setIsAddingProject(true);
+  }
 
   return (
     <main className="h-screen my-8 flex gap-8">
-      <SideBar projects={projects} />
+      <SideBar projects={projects} onAddProject={handleAddProject} />
 
-      {projects.length === 0 && (
-        <div className="mt-24 text-center w-2/3">
-          <img
-            src="logo.png"
-            className="w-16 h-16 object-contain mx-auto"
-          ></img>
-          <h2 className="text-xl font-bold text-stone-500 my-4">
-            No project Selected
-          </h2>
-          <p className="text-stone-400 mb-4">
-            Select a project or get started with a new one
-          </p>
-          <button className="px-6 py-2 rounded-md bg-stone-800 text-stone-50 hover:bg-stone-950">
-            Create new project
-          </button>
-        </div>
+      {!isProjectSelected && !isAddingProject && (
+        <NoProject onAddProject={handleAddProject} />
       )}
 
-      <NewProject />
+      {isAddingProject && <NewProject />}
     </main>
   );
 }
