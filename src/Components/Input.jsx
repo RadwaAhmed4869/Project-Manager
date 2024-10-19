@@ -13,6 +13,9 @@ const Input = forwardRef(function Input(
       getInput() {
         return inputRef.current.value.trim();
       },
+      clearInput() {
+        inputRef.current.value = "";
+      },
     };
   });
 
