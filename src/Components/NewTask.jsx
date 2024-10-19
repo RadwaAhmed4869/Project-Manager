@@ -7,6 +7,13 @@ export default function NewTask({ onAddTask }) {
     setEnteredTask(event.target.value);
   }
 
+  function handleClick() {
+    if (enteredTask.trim() === "") return;
+
+    onAddTask(enteredTask);
+    setEnteredTask("");
+  }
+
   return (
     <div className="flex items-center gap-4">
       <input
@@ -18,11 +25,7 @@ export default function NewTask({ onAddTask }) {
       ></input>
       <button
         className="text-stone-700 hover:text-slate-950"
-        onClick={() => {
-          if (enteredTask === "") return;
-          onAddTask(enteredTask);
-          setEnteredTask("");
-        }}
+        onClick={handleClick}
       >
         Add Task
       </button>
