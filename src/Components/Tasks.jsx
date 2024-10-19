@@ -1,6 +1,4 @@
-import { useState } from "react";
-
-import NewTask from "./NewTask";
+import NewTask from "./NewTask.jsx";
 
 export default function ({ tasks, onAdd, onDelete }) {
   return (
