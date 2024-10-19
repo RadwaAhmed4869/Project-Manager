@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import SideBar from "./Components/sideBar.jsx";
+import SideBar from "./Components/SideBar.jsx";
 import NewProject from "./Components/NewProject.jsx";
 import NoProject from "./Components/NoProject.jsx";
 import Project from "./Components/Project.jsx";
