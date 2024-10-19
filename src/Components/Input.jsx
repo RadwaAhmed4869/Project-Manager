@@ -11,7 +11,7 @@ const Input = forwardRef(function Input(
   useImperativeHandle(ref, () => {
     return {
       getInput() {
-        return inputRef.current.value;
+        return inputRef.current.value.trim();
       },
     };
   });

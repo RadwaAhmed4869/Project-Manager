@@ -44,13 +44,25 @@ function App() {
     });
   }
 
-  console.log(projectsState.projects);
+  function handleCancel() {
+    setProjectsState((prevState) => {
+      return {
+        ...prevState,
+        selectedProjectId: undefined,
+      };
+    });
+  }
 
   let content;
   if (projectsState.selectedProjectId === undefined) {
     content = <NoProject onAddProject={handleAddProject} />;
   } else if (projectsState.selectedProjectId === null) {
-    content = <NewProject onSaveNewProject={handleSaveNewProject} />;
+    content = (
+      <NewProject
+        onSaveNewProject={handleSaveNewProject}
+        onCancel={handleCancel}
+      />
+    );
   }
 
   return (
