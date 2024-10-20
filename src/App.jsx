@@ -1,5 +1,5 @@
 import { useState } from "react";
-import menuImage from "./src/assets/menu.png";
+import menuImage from "../src/assets/menu.png";
 
 import SideBar from "./Components/SideBar.jsx";
 import NewProject from "./Components/NewProject.jsx";
@@ -174,16 +174,19 @@ function App() {
           }}
         >
           <img
-            className="mt-2 mx-6 w-8 h-8 hover:w-[34px] hover:h-[34px]"
+            className=" mx-6 w-8 h-8 hover:w-[34px] hover:h-[34px]"
             src={menuImage}
           ></img>
         </button>
-        <button className="text-center px-4 py-1 rounded-sm my-1 text-stone-200 bg-stone-800">
-          {projectsState.selectedProjectId &&
-            projectsState.projects.find(
-              (project) => project.id === projectsState.selectedProjectId
-            ).title}
-        </button>
+        {projectsState.selectedProjectId && (
+          <p className="text-center px-4 py-1 rounded-sm my-1 text-stone-200 bg-stone-800">
+            {
+              projectsState.projects.find(
+                (project) => project.id === projectsState.selectedProjectId
+              ).title
+            }
+          </p>
+        )}
       </header>
       <main className="h-screen flex gap-8">
         {menuVisiable && (
