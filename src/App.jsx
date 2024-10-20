@@ -1,4 +1,5 @@
 import { useState } from "react";
+import menuImage from "./src/assets/menu.png";
 
 import SideBar from "./Components/SideBar.jsx";
 import NewProject from "./Components/NewProject.jsx";
@@ -166,7 +167,7 @@ function App() {
 
   return (
     <>
-      <header className="flex h-12 w-screen bg-stone-900">
+      <header className="flex h-11 w-screen bg-stone-900">
         <button
           onClick={() => {
             setMenuVisible((prevState) => !prevState);
@@ -174,7 +175,7 @@ function App() {
         >
           <img
             className="mt-2 mx-6 w-8 h-8 hover:w-[34px] hover:h-[34px]"
-            src="./src/assets/menu.png"
+            src={menuImage}
           ></img>
         </button>
         <button className="text-center px-4 py-1 rounded-sm my-1 text-stone-200 bg-stone-800">
